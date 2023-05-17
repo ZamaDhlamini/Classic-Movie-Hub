@@ -1,0 +1,35 @@
+main {
+    color: white;
+}
+
+body {
+    height: 125vh;
+    background-size: cover;
+    font-family: sans-serif;
+    margin-top: 80px;
+    padding: 30px;
+}
+
+header {
+    background-color: rgb(5, 5, 5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+header * {
+    display: inline;
+}
+
+header link {
+    margin: 20px;
+}
+
+header link {
+    color: white;
+    text-decoration: none;
+}
