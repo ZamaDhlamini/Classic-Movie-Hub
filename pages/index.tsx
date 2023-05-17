@@ -1,24 +1,39 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import { useGet } from 'restful-react'
-
+import React from 'react';
+import Link from 'next/link';
+import Layout from '../components/Layout';
+import { useGet } from 'restful-react';
 
 const IndexPage = () => {
+  const { error, loading, data } = useGet({ path: '/Movie/GetAll' });
 
-  const { error, loading, data } = useGet({path: "/Movie/GetAll"})
-
-  return(
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    {error && <h1>{error.message}</h1>}
-    {loading && <h2>Loading...</h2>}
-    {data && <img alt="Doggy!" src={data.message} />}
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-  </Layout>
-  )
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
-export default IndexPage
+  const movies = data.result;
+
+  return (
+    <Layout title="Home | Next.js + TypeScript Example">
+      <h1>Hello Next.js 👋</h1>
+      <div>
+        {movies.map((movie) => (
+          <div key={movie.id}>
+            <h1>{movie.title}</h1>
+            <p>Duration: {movie.duration}</p>
+            <p>Staring: {movie.staring}</p>
+            <p>Category: {movie.category}</p>
+          </div>
+        ))}
+      </div>
+      <p>
+        <Link href="/about">About</Link>
+      </p>
+    </Layout>
+  );
+};
+
+export default IndexPage;
