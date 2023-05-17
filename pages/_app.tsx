@@ -5,7 +5,7 @@ import App, { AppProps } from 'next/app';
 function MyApp({ Component, pageProps }: AppProps) {
     return (
       <>
-         <RestfulProvider base="https://soap2day.to/pic/movie">
+         <RestfulProvider base="https://localhost:44311/api/services/app/">
          <Component {...pageProps} />
          </RestfulProvider>
   </>

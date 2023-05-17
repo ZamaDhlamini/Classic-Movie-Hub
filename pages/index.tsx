@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import { useGet } from 'restful-react'
-import MyApp from './_app'  
+
 
 const IndexPage = () => {
-  const { error, loading, data } = useGet({path: "/cover/aToxNjE4NDs.jpg"})
+
+  const { error, loading, data } = useGet({path: "/Movie/GetAll"})
 
   return(
   <Layout title="Home | Next.js + TypeScript Example">
@@ -17,6 +18,7 @@ const IndexPage = () => {
     </p>
   </Layout>
   )
-}
+  }
+
 
 export default IndexPage
