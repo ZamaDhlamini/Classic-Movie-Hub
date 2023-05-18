@@ -1,34 +1,41 @@
 import { createContext } from "react";
+import { GetDataError } from "restful-react";
 
 export interface IMovie {
   id?: string;
   title?: string;
   duration?: string;
   description?: string;
-  staring?: string;
-  category?: string;
+  starring?: string;
+  genre?: string;
+  picture?: string;
+  videoUrl?: string;
+  loading?: boolean;
+  error?: Error | null;
+  data?: any | null;
+
 }
 
 export interface IMovieStateContext {
   readonly MovieCreated?: IMovie;
-  readonly DeletedMovieId?: string;
   readonly MovieGotten?: IMovie[];
-  readonly MovieUpdated?: IMovie;
-  readonly MovieDeleted?: IMovie;
+  readonly loading: true | boolean;
+  readonly error: null | GetDataError<any>;
+  readonly data: IMovie[];
 }
 
 export interface IMovieActionContext {
-  createMovie: (payload: IMovie) => Promise<void>;
   getMovie: () => void;
-  updateMovie: (payload: IMovie) => Promise<void>;
-  deleteMovie: (id: string) => Promise<void>;
 }
 
 export interface IMovieContext extends IMovieStateContext, IMovieActionContext {}
 
 export const INITIAL_STATE: IMovieStateContext = {
   MovieCreated: {},
-  MovieGotten: []
+  MovieGotten: [],
+  loading: true,
+  error: null,
+  data: null
 };
 
 const MovieStateContext = createContext<IMovieStateContext>(INITIAL_STATE);
