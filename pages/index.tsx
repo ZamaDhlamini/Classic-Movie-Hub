@@ -18,14 +18,21 @@ const IndexPage = () => {
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js 👋</h1>
+      <h1>Welcome to Movie Buff! 👋</h1>
       <div>
         {movies.map((movie) => (
           <div key={movie.id}>
             <h1>{movie.title}</h1>
             <p>Duration: {movie.duration}</p>
-            <p>Staring: {movie.staring}</p>
-            <p>Category: {movie.category}</p>
+            <p>Staring: {movie.starring}</p>
+            <p>Genre: {movie.genreName}</p>
+            <p>Year: {movie.year}</p>
+            <p>Description: {movie.description}</p>
+            <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'}/>
+            <video width="300" height="auto" controls>
+              <source src={movie.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         ))}
       </div>
