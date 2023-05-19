@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import { useGet } from 'restful-react';
+import { useMovie } from '../providers/movies';
 
 const IndexPage = () => {
+
+  const { getMovies, MovieGotten} = useMovie();
+  useEffect(() => {
+      getMovies();
+    }, []);
+    
   const { error, loading, data } = useGet({ path: '/Movie/GetAll' });
 
   if (loading) {

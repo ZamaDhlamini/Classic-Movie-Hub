@@ -25,7 +25,7 @@ export interface IMovieStateContext {
 }
 
 export interface IMovieActionContext {
-  getMovie: () => void;
+  getMovies?: () => void;
 }
 
 export interface IMovieContext extends IMovieStateContext, IMovieActionContext {}

@@ -1,58 +1,64 @@
-import { FC, PropsWithChildren, createContext, useContext } from "react";
-import { useGet } from "restful-react";
-import { MovieActionContext, MovieStateContext } from "./context";
+import React, { FC, PropsWithChildren, useContext, useEffect, useReducer, useState } from 'react';
+import { MovieReducer } from './reducer';
+import {IMovie,INITIAL_STATE,MovieActionContext,MovieStateContext,} from './context';
+import {GetMovieRequestAction} from './actions';
+import { useGet } from 'restful-react';
 
-
-const MovieProvider: FC<PropsWithChildren<any>> = ({ children }) => {
-  const { error, loading, data } = useGet({ 
-    path: '/Movie/GetAll'
- });
-  const dispatch = (GetMovieRequestAction) => {
-    // Define your dispatch logic here
-    // For example, update the state based on the action
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  return (
-    <MovieStateContext.Provider value={{ error, loading, data }}>
-        <MovieActionContext.Provider value={{dispatch}}>
-          {children}
-        </MovieActionContext.Provider>
-    </MovieStateContext.Provider>
-  );
-
-  function useMovieState() {
-    const context = useContext(MovieStateContext);
-    if (!context) {
-        throw new Error(`useState must be used within an AuthProvider`)
+const MovieProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(MovieReducer, INITIAL_STATE);
+    const [searchTerm, setSearchTerm] = useState('');
+    
+    const { data ,refetch:getMoviesHttp} = useGet({
+        path: 'Movie/GetAll' ,
+        lazy: true,
+    });
+    
+    useEffect(()=>{
+        if(data){
+            dispatch(GetMovieRequestAction(data.result));
+        }
+    },[data])
+    
+    const getMovies = async () => {
+            getMoviesHttp();
     }
-    return context;
-}
 
-function useMovieActionState() {
-    const context = useContext(MovieActionContext);
-    if (!context) {
-        throw new Error(`useMovieActions must be used within an AuthProvider`)
-    }
-    return context;
-}
-
-function useMovies() {
-    return {
-        ...useMovieState(),
-        ...useMovieActionState(),
-    }
-}
-
- 
+    return (
+        <MovieStateContext.Provider value={state}>
+            <MovieActionContext.Provider
+                value={{
+                    getMovies
+                }}
+            >
+                {children}
+            </MovieActionContext.Provider>
+        </MovieStateContext.Provider>
+    );
 };
 
-export default MovieProvider;
+function useMovieState() {
+    const context = useContext(MovieStateContext);
+    if (!context) {
+        throw new Error('useMovieState must be used within a MovieProvider');
+    }
+    return context;
+}
 
+function useMovieAction() {
+    const context = useContext(MovieActionContext);
+    if (context === undefined) {
+        throw new Error('useMovieState must be used within a MovieProvider');
+    }
+    return context;
+}
+
+function useMovie() {
+    return {
+        ...useMovieState(),
+        ...useMovieAction(),
+    };
+}
+export { MovieProvider, useMovie };
+    function createMovieRequestAction(result: any): import("redux-actions").Action<import("./context").IMovieStateContext> {
+        throw new Error('Function not implemented.');
+    }
