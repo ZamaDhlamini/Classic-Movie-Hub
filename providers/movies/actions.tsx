@@ -6,4 +6,4 @@ export enum MovieActionEnum{
 }
 
 
-export const GetMovieRequestAction = createAction<IMovieStateContext, Array<IMovie>>(MovieActionEnum.GetMovieRequest, (MovieGotten) => ({loading: false, error: null, data: MovieGotten}));
+export const GetMovieRequestAction = createAction<IMovieStateContext, Array<IMovie>>(MovieActionEnum.GetMovieRequest, (MovieGotten) => ({MovieGotten}));

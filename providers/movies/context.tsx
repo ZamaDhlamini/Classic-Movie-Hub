@@ -1,44 +1,39 @@
 import { createContext } from "react";
-import { GetDataError } from "restful-react";
 
 export interface IMovie {
-  id?: string;
-  title?: string;
-  duration?: string;
-  description?: string;
-  starring?: string;
-  genre?: string;
-  picture?: string;
-  videoUrl?: string;
-  loading?: boolean;
-  error?: Error | null;
-  data?: any | null;
+    id?: string,
+    title: string,
+    duration: string,
+    starring: string,
+    genreName: string,
+    picture?: string,
+    videoUrl?: string,
+    description?: string,
+    year?: string,
 
+    // film?: string,
+}
+
+export const INITIAL_STATE: IMovieStateContext={
+  MovieGotten:[],
 }
 
 export interface IMovieStateContext {
-  readonly MovieCreated?: IMovie;
-  readonly MovieGotten?: IMovie[];
-  readonly loading: true | boolean;
-  readonly error: null | GetDataError<any>;
-  readonly data: IMovie[];
+    readonly MovieGotten?:Array<IMovie>;
+    readonly searchedMovie?:IMovie[];
+    readonly filteredMovie?:IMovie;
+    readonly countedMovie?:number;
 }
 
-export interface IMovieActionContext {
-  getMovies?: () => void;
+export interface IMovieActionContext{
+    getMovies?:() => void;
+    // searchMovie?:(payload:string) => void;
+    // filterMovie?:(payload:string) => void;
+    // countMovies?:() => void;
 }
-
-export interface IMovieContext extends IMovieStateContext, IMovieActionContext {}
-
-export const INITIAL_STATE: IMovieStateContext = {
-  MovieCreated: {},
-  MovieGotten: [],
-  loading: true,
-  error: null,
-  data: null
-};
 
 const MovieStateContext = createContext<IMovieStateContext>(INITIAL_STATE);
+
 const MovieActionContext = createContext<IMovieActionContext>(undefined);
 
-export { MovieStateContext, MovieActionContext };
+export {MovieStateContext, MovieActionContext};

@@ -6,7 +6,6 @@ import { useGet } from 'restful-react';
 
 const MovieProvider = ({ children }) => {
     const [state, dispatch] = useReducer(MovieReducer, INITIAL_STATE);
-    const [searchTerm, setSearchTerm] = useState('');
     
     const { data ,refetch:getMoviesHttp} = useGet({
         path: 'Movie/GetAll' ,
