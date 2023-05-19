@@ -12,7 +12,16 @@ const IndexPage = () => {
       getMovies();
       console.log('movie is fetched')
     }, []);
+
+    const extractYouTubeVideoId = (url) => {
+      if (url) {
+        const trailerId = url.replace('https://youtu.be/', '');
+        return trailerId;
+      }
+      return null;
+    };
     
+    const trailerId = extractYouTubeVideoId(MovieGotten.videoURL);
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <h1>Welcome to Movie Buff! 👋</h1>
