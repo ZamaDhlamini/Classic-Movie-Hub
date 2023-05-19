@@ -19,7 +19,6 @@ const AboutPage = () => {
         {MovieGotten.map((movie) => (
           <div key={movie.id} className="movie-item">
             <h1>{movie.title}</h1>
-            {/* <p>Description: {movie.description}</p> */}
             <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'} />
           </div>
         ))}
@@ -36,7 +35,6 @@ const AboutPage = () => {
         }
 
         .movie-item {
-          /* border: 1px solid #ccc; */
           padding: 10px;
         }
       `}</style>

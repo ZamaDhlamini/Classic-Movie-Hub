@@ -5,8 +5,8 @@ export function UserReducer(incomingState: IUsersStateContext, action: ReduxActi
     const {type, payload} = action;
 
     switch (type){
-        // case UsersActionEnums.CreateUserRequest:
-        //     return {...incomingState, ...payload};
+        case UsersActionEnums.CreateUserRequest:
+            return {...incomingState, ...payload};
 
             case UsersActionEnums.LoginUserRequest:
                 return{...incomingState}
