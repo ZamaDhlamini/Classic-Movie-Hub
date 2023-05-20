@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, useReducer } from "react";
-import { ILogin, INITIAL_STATE, IUser, UserContext } from "./context";
+import { ILogin, INITIAL_STATE, IUser, UserContext, UsersActionsContext } from "./context";
 import { UserReducer } from "./reducer";
 import { CreateUserRequestAction, LoginUserRequestAction } from "./actions";
 
@@ -48,9 +48,9 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
 
     return(
         <UserContext.Provider value={state}>
-            <UserActionContext.Provider value={{createUser, login}}>
+            <UsersActionsContext.Provider value={{createUser, login}}>
                 {children}
-            </UserActionContext.Provider>
+            </UsersActionsContext.Provider>
         </UserContext.Provider>
     )
 }
