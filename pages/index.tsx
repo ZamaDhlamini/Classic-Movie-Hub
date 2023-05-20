@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { useGet } from 'restful-react';
 import { useMovie } from '../providers/movies';
+import Link from 'next/link';
 
 const IndexPage = () => {
   const { getMovies, MovieGotten } = useMovie();
+  const router = useRouter();
 
   useEffect(() => {
     getMovies();
@@ -20,6 +22,10 @@ const IndexPage = () => {
     return null;
   };
 
+  const handleImageClick = () => {
+    router.push('/video');
+  };
+
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <h1>Welcome to Movie Buff! 👋</h1>
@@ -32,7 +38,13 @@ const IndexPage = () => {
             <p>Genre: {movie.genreName}</p>
             <p>Year: {movie.year}</p>
             <p>Description: {movie.description}</p>
-            <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'} />
+            <img
+              src={movie.picture}
+              alt={movie.title}
+              width={'300px'}
+              height={'420px'}
+              onClick={handleImageClick}
+            />
             <iframe
               className={movie.videoUrl}
               src={`https://www.youtube.com/embed/${extractYouTubeVideoId(movie.videoUrl)}`}
