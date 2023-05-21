@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Layout from '../Layout';
 import { useGet } from 'restful-react';
@@ -7,6 +7,7 @@ import styles from './Home.module.css';
 
 const IndexPage = () => {
   const { getMovies, MovieGotten } = useMovie();
+  const [hoveredMovieId, setHoveredMovieId] = useState(null);
 
   useEffect(() => {
     getMovies();
@@ -21,6 +22,14 @@ const IndexPage = () => {
     return null;
   };
 
+  const handleMouseEnter = (movieId) => {
+    setHoveredMovieId(movieId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredMovieId(null);
+  };
+
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <div className={styles.heading}>
@@ -28,16 +37,26 @@ const IndexPage = () => {
       </div>
       <div className={styles.grid}>
         {MovieGotten?.map((movie) => (
-          <div key={movie.id} className={styles.movie}>
-            <h1>{movie.title}</h1>
-            <p>Duration: {movie.duration}</p>
-            <p>Starring: {movie.starring}</p>
-            <p>Genre: {movie.genreName}</p>
-            <p>Year: {movie.year}</p>
-            <p className={styles.description}>Description: {movie.description}</p>
+          <div
+            key={movie.id}
+            className={`${styles.movie} ${hoveredMovieId === movie.id ? styles.hovered : ''}`}
+            onMouseEnter={() => handleMouseEnter(movie.id)}
+            onMouseLeave={handleMouseLeave}
+          >
             <Link href="/video">
-              <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'} />
+              <div className={styles.imageContainer}>
+                <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'} />
+                <div className={styles.overlay}>
+                  <div className={styles.overlayContent}>
+                    <p>Duration: {hoveredMovieId === movie.id ? movie.duration : ''}</p>
+                    <p>Starring: {hoveredMovieId === movie.id ? movie.starring : ''}</p>
+                    <p>Genre: {hoveredMovieId === movie.id ? movie.genreName : ''}</p>
+                    <p>Year: {hoveredMovieId === movie.id ? movie.year : ''}</p>
+                  </div>
+                </div>
+              </div>
             </Link>
+            <h1 className={styles.movieTitle}>{movie.title}</h1>
             <iframe
               className={styles.video}
               src={`https://www.youtube.com/embed/${extractYouTubeVideoId(movie.videoUrl)}`}
