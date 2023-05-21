@@ -1,0 +1,27 @@
+/* faq.module.css */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .faqItem {
+    margin-bottom: 20px;
+  }
+  
+  .question {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .answer {
+    font-size: 16px;
+  }
+  

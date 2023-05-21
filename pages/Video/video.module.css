@@ -1,11 +1,15 @@
 .videoContainer {
-    width: 100%;
-    height: 100%;
-    display: center;
+    display: flex;
     flex-direction: column;
     align-items: center;
-
+    justify-content: center;
+    height: 100vh; /* Adjust the height as needed */
   }
+  
+  .videoPlayer {
+    width: 80%; /* Adjust the width as needed */
+  }
+  
   .videoContainer h1 {
     font-size: 24px;
     color: #333;

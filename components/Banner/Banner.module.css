@@ -5,9 +5,26 @@
     background-image: url('../../public/the-avengers-movie-poster-banners-.jpg');
     color: white;
     font-size: 30px;
+    position: relative; /* Add position relative */
+    overflow: hidden; /* Hide overflowing images */
   }
 
 .image header{
     -webkit-filter: blur(10px);
     filter: blur(10px);
   }
+
+  .image {
+    position: absolute; /* Position the images absolutely */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Hide all images initially */
+    transition: opacity 0.5s ease; /* Add transition effect */
+  }
+  
+  .image.active {
+    opacity: 1; /* Show active image */
+  }
+  
