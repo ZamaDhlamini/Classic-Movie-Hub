@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from './NavBar.module.css'
+import styles from './Banner.module.css'
 
 const NavBar = () => {
     return(

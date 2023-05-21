@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout from '../Layout';
 import { useGet } from 'restful-react';
 import { useMovie } from '../../providers/movies';
+import styles from './Home.module.css';
 
 const IndexPage = () => {
   const { getMovies, MovieGotten } = useMovie();
@@ -22,7 +23,9 @@ const IndexPage = () => {
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Welcome to Movie Buff! 👋</h1>
+      <div className={styles.heading}>
+      <h1>Popular Movies</h1>
+      </div>
       <div>
         {MovieGotten?.map((movie) => (
           <div key={movie.id}>

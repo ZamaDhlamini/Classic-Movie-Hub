@@ -1,6 +1,7 @@
 import React from 'react';
-import { fetchVideo } from '../utils/api';
+import { fetchVideo } from '../../utils/api';
 import ReactPlayer from 'react-player';
+import styles from './video.module.css'
 
 const VideoPage: React.FC = () => {
   const [videoData, setVideoData] = React.useState<any>(null);
@@ -31,9 +32,11 @@ const VideoPage: React.FC = () => {
   }
 
   return (
-    <div>
+   <div className={styles.videoContainer}>
       <h1>{videoData.title}</h1>
-      <ReactPlayer url={videoData.video_files[0].link} controls={true} />
+      <div className={styles.videoContainer}>
+        <ReactPlayer url={videoData.video_files[0].link} controls={true} />
+      </div>
     </div>
   );
 };

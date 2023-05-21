@@ -1,0 +1,27 @@
+.videoContainer {
+    width: 100%;
+    height: 100%;
+    display: center;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  .videoContainer h1 {
+    font-size: 24px;
+    color: #333;
+
+  }
+  .videoContainer {
+    margin-top: 20px;
+
+  }
+  .videoContainer .react-player__controls {
+
+  }
+  
+  .videoContainer .react-player__control {
+
+  }
+  
+  
+        
