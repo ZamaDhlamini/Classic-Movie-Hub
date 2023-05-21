@@ -6,3 +6,24 @@
   background-clip: text;
   -webkit-background-clip: text;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .movie {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+  
+  .description {
+    margin-top: auto;
+  }
+  
+  .video {
+    width: 100%;
+    height: 300px;
+  }
+  

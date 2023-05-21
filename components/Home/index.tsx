@@ -24,22 +24,22 @@ const IndexPage = () => {
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <div className={styles.heading}>
-      <h1>Popular Movies</h1>
+        <h1>Popular Movies</h1>
       </div>
-      <div>
+      <div className={styles.grid}>
         {MovieGotten?.map((movie) => (
-          <div key={movie.id}>
+          <div key={movie.id} className={styles.movie}>
             <h1>{movie.title}</h1>
             <p>Duration: {movie.duration}</p>
             <p>Starring: {movie.starring}</p>
             <p>Genre: {movie.genreName}</p>
             <p>Year: {movie.year}</p>
-            <p>Description: {movie.description}</p>
+            <p className={styles.description}>Description: {movie.description}</p>
             <Link href="/video">
-                <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'}/>
+              <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'} />
             </Link>
             <iframe
-              className={movie.videoUrl}
+              className={styles.video}
               src={`https://www.youtube.com/embed/${extractYouTubeVideoId(movie.videoUrl)}`}
               allowFullScreen
             ></iframe>
