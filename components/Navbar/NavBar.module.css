@@ -1,0 +1,13 @@
+.header {
+    padding: 200px;
+    text-align: center;
+    background: #2f2b59;
+    background-image: url('../../public/the-avengers-movie-poster-banners-.jpg');
+    color: white;
+    font-size: 30px;
+  }
+
+.image header{
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+  }

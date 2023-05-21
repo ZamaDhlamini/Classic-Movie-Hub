@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import Layout from '../components/Layout';
-import { useMovie } from '../providers/movies';
+import Layout from '../Layout';;
+import { useMovie } from '../../providers/movies';
 import { useEffect } from 'react';
+import styles from './About.module.css';
 
-const AboutPage = () => {
+const About = () => {
   const { getMovies, MovieGotten } = useMovie();
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const AboutPage = () => {
 
   return (
     <Layout title="About | Next.js + TypeScript Example">
-      <h1>Movie Gallery</h1>
+      <h1 className={styles.MovieGallery}>Movie Gallery</h1>
       <p>These are your movies</p>
       <div className="movie-grid">
         {MovieGotten.map((movie) => (
@@ -42,4 +43,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default About;
