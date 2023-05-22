@@ -78,6 +78,6 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
         }
     };
 
-export default {UsersProvider, useUsers }; //!!don't forget to add useUsers!!
+export {UsersProvider, useUsers }; //!!don't forget to add useUsers!!
 
 
