@@ -1,7 +1,8 @@
 import { FC, PropsWithChildren, useReducer } from "react";
-import { ILogin, INITIAL_STATE, IUser, UserContext, UsersActionsContext } from "./context";
+import { ILogin, INITIAL_STATE, IUser, USersStateContext, UserContext, UsersActionsContext } from "./context";
 import { UserReducer } from "./reducer";
 import { CreateUserRequestAction, LoginUserRequestAction } from "./actions";
+import { useContext } from "react";
 
 const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
   const [state, dispatch] = useReducer(UserReducer, INITIAL_STATE);
@@ -53,5 +54,30 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
             </UsersActionsContext.Provider>
         </UserContext.Provider>
     )
+
+    function useUsersState(){
+        const context = useContext(USersStateContext);
+        if(!context){
+            throw new Error('blah blah blah')
+        }
+        return context;
+    }
+    function useUsersAction(){
+        const context = useContext(UsersActionsContext);
+        if(context === undefined){
+            throw new Error('blah blah blah')
+        }
+        return context;
+    }
+
+    function useUsers(){
+        return{
+            ...useUsersState(),
+            ...useUsersAction(),
+        }
+    };
+
 }
+export {UsersProvider, }; //!!don't forget to add useUsers!!
+
 

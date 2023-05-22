@@ -4,6 +4,7 @@ import { useMovie } from '../../providers/movies';
 import { useEffect } from 'react';
 import styles from './About.module.css';
 
+
 const About = () => {
   const { getMovies, MovieGotten } = useMovie();
 
