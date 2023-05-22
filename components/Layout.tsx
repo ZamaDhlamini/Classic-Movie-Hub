@@ -16,12 +16,17 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
-      <nav>
+  <nav>
+    <div className="navMain">
+      <div className="logo">ZMovies</div>
+      <div className="links">
         <Link href="/">Movies</Link> | <Link href="/about">Your Movies</Link> |{' '}
         {/* <Link href="/users"></Link> |{' '} */}
         <a href="/faq">FAQ</a>
-      </nav>
-    </header>
+      </div>
+    </div>
+  </nav>
+</header>
     {children}
     <footer>
       <hr />

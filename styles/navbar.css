@@ -2,6 +2,30 @@ main {
     color: white;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navMain {
+    display: flex;
+  }
+  
+  .logo {
+    margin-right: auto; /* Pushes the logo to the far left */
+  }
+  
+  .links {
+    margin-left: auto; /* Pushes the links to the far right */
+  }
+  
+  /* Optional styling for the links */
+  .links a {
+    margin-left: 10px; /* Adds some spacing between the links */
+  }
+  
+
 body {
     height: 125vh;
     background-size: cover;

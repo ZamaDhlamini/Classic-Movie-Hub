@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './Banner.module.css'
+import styles from './Banner.module.css';
 
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -19,7 +19,6 @@ const Carousel = () => {
     '/Dune-Banner.jpg',
     '/jujutsu-kaisen-banner.jpg',
   ];
-  
 
   return (
     <div className={styles.header}>
@@ -29,7 +28,7 @@ const Carousel = () => {
             key={index}
             src={image}
             alt={`Image ${index + 1}`}
-            className={index === activeIndex ? 'active' : ''}
+            className={index === activeIndex ? styles.active : ''}
           />
         ))}
       </div>
