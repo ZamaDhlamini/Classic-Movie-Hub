@@ -3,8 +3,7 @@ import { useMovie } from "../../providers/movies";
 
 
 const Video = () => {
-
-    const { getMovies, MovieGotten } = useMovie();
+const { getMovies, MovieGotten } = useMovie();
     
       useEffect(() => {
         getMovies();

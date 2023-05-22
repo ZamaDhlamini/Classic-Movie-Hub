@@ -8,6 +8,7 @@ import styles from './Home.module.css';
 const IndexPage = () => {
   const { getMovies, MovieGotten } = useMovie();
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
+  const [showTrailer, setShowTrailer] = useState(false);
 
   useEffect(() => {
     getMovies();
@@ -57,6 +58,7 @@ const IndexPage = () => {
               </div>
             </Link>
             <h1 className={styles.movieTitle}>{movie.title}</h1>
+            <button className='trailer button'>View Trailer</button>
             <iframe
               className={styles.video}
               src={`https://www.youtube.com/embed/${extractYouTubeVideoId(movie.videoUrl)}`}

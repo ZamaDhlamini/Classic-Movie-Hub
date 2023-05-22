@@ -54,6 +54,7 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
             </UsersActionsContext.Provider>
         </UserContext.Provider>
     )
+}
 
     function useUsersState(){
         const context = useContext(USersStateContext);
@@ -77,7 +78,6 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
         }
     };
 
-}
-export {UsersProvider, }; //!!don't forget to add useUsers!!
+export default {UsersProvider, useUsers }; //!!don't forget to add useUsers!!
 
 

@@ -10,6 +10,8 @@
     "@fontsource/dosis": "^5.0.0",
     "@types/redux-actions": "^2.6.2",
     "axios": "^1.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "jwt-decode": "^3.1.2",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
