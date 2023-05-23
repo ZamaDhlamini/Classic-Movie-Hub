@@ -15,9 +15,9 @@ const Carousel = () => {
   }, []);
 
   const images = [
-    '/the-avengers-movie-poster-banners-.jpg',
-    '/Dune-Banner.jpg',
-    '/jujutsu-kaisen-banner.jpg',
+    './the-avengers-movie-poster-banners-.jpg',
+    '../../public/Dune-Banner.jpg',
+    './jujutsu-kaisen-banner.jpg',
   ];
 
   return (

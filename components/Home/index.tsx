@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import ReactPlayer from 'react-player';
 import Layout from '../Layout';
 import { useGet } from 'restful-react';
 import { useMovie } from '../../providers/movies';
@@ -31,6 +32,10 @@ const IndexPage = () => {
     setHoveredMovieId(null);
   };
 
+  const handleClick = () => {
+    setShowTrailer(true);
+  };
+
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <div className={styles.heading}>
@@ -58,12 +63,16 @@ const IndexPage = () => {
               </div>
             </Link>
             <h1 className={styles.movieTitle}>{movie.title}</h1>
-            <button className='trailer button'>View Trailer</button>
-            <iframe
-              className={styles.video}
-              src={`https://www.youtube.com/embed/${extractYouTubeVideoId(movie.videoUrl)}`}
-              allowFullScreen
-            ></iframe>
+            <button onClick={handleClick} className='trailer button'>View Trailer</button>
+            {showTrailer && (
+              <ReactPlayer
+                className={styles.video}
+                url={`https://www.youtube.com/watch?v=${extractYouTubeVideoId(movie.videoUrl)}`}
+                width="100%"
+                height="100%"
+                controls
+              />
+            )}
           </div>
         ))}
       </div>

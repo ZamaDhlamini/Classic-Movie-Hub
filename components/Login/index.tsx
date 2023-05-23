@@ -10,9 +10,9 @@ const LoginSignPage: React.FC = () => {
     const {createUser, UserCreated} = useUsers();
 
 
-    useEffect(() => {
-        createUser();
-    }, []);
+    // useEffect(() => {
+    //     createUser();
+    // }, []);
     
   
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
