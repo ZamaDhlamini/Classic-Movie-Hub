@@ -69,6 +69,9 @@ const IndexPage = () => {
                 </div>
               </div>
             </Link>
+            <button onClick={() => handleClick(movie.movies)} className={styles.logoButton}>
+              <img src="logo.png" alt="Logo" className={styles.logo} />
+            </button>
             <h1 className={styles.movieTitle}>{movie.title}</h1>
             {showTrailer && (
             <iframe
@@ -79,7 +82,7 @@ const IndexPage = () => {
               allowFullScreen
                  />
                  )}
-              <button onClick={() => handleClick(movie.movies)} className={styles.trailerBUtton}>View Trailer</button>
+              {/* <button onClick={() => handleClick(movie.movies)} className={styles.trailerBUtton}>View Trailer</button> */}
               {/* <button onClick={() => handleMovieClick(movie.movies)} className={styles.movieBUtton}>view movie</button> */}
           </div>
         ))}

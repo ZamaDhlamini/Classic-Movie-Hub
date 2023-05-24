@@ -1,4 +1,4 @@
-import About from "../../components/AboutMovie";
+import About from "../users/[id]";
 
 
 const AboutMovies = () => {

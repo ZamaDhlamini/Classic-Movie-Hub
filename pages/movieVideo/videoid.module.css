@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: Morden;
     src: url('../../public/fonts/Morden.woff') format('woff');
 }
@@ -25,30 +25,6 @@
   }
   
   .details p {
-    margin: 5px 5;
+    margin: 5px 0;
   }
-
-  .poster{
-    text-align: left;
-  }
-
-  .description {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    
-  }
-  
-  .details {
-    margin-top: 10px;
-    text-align: left;
-  }
-  
-  .poster {
-    float: left;
-    margin-right: 20px;
-    padding-top: 20px;
-  }
-  
-  
+   */

@@ -7,8 +7,8 @@
 .heading h1{
     font-size: 40px;
   font-weight: 600;
-  background-image: linear-gradient(to left, #553c9a, #b393d3);
-  color: transparent;
+  /* background-image: linear-gradient(to left, #553c9a, #b393d3); */
+  color: black;
   background-clip: text;
   -webkit-background-clip: text;
   font-family: 'Morden', sans-serif;
@@ -77,17 +77,23 @@
     opacity: 0;
   }
 
-  .trailerBUtton:hover {
-    background-color: #0056b3;
+  .logoButton:hover {
+    background-color: #717274c0;
   }
 
-  .trailerBUtton {
-    font-size: 16px;
+  .logo{
+    width: 20px;
+    height: 20px;
+  }
+
+  .logoButton {
+    font-size: 10px;
     color: #fff;
-    background-color: #007bff;
-    border: none;
-    padding: 10px 20px;
+    background-color: #f7efdc;
+    border: #fff;
+    padding: 5px 10px;
     cursor: pointer;
+    width: 50px;
   }
   
   

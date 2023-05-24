@@ -1,5 +1,12 @@
 /*global CSS*/
+@font-face {
+    font-family: Morden;
+    src: url('../public/fonts/Morden.woff') format('woff');
+}
+
+
 
 body{
     background-image: url('../public/backgroundimagemain.jpg');
+    font-family: 'Morden', sans-serif;
 }

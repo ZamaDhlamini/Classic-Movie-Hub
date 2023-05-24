@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useMovie } from "../../providers/movies";
 import styles from './videoid.module.css';
+import { DiscussionEmbed } from 'disqus-react';
 
 const VideoPage: React.FC = () => {
   const router = useRouter();
@@ -11,6 +12,13 @@ const VideoPage: React.FC = () => {
   console.log("MyID::", id);
 
   const foundMovie = MovieGotten?.find((movie) => movie.id === id);
+  const disqusShortname = 'zclassicmovies';
+
+  useEffect(() => {
+    if (window.DISQUS) {
+      window.DISQUS.reset({ reload: true });
+    }
+  }, [foundMovie]);
 
   return (
     <div className={styles.container}>
@@ -24,6 +32,7 @@ const VideoPage: React.FC = () => {
             frameBorder="0"
             allowFullScreen
           ></iframe>
+          <img className={styles.poster} src={foundMovie.picture} alt={foundMovie.title} width={'300px'} height={'420px'} />
           <div className={styles.description}>
             <h3>Description:</h3>
             <p>{foundMovie.description}</p>
