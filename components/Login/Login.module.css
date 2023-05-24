@@ -1,0 +1,12 @@
+.loginBox{
+    background-image: url('../../public/Film_Slate.png');
+  background-repeat: no-repeat;
+  background-size: contain; 
+  background-position: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 459px; 
+  width: 390px;
+}

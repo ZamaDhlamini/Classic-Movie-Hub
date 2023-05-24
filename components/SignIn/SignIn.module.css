@@ -1,0 +1,30 @@
+.signInBox {
+    background-image: url('../../public/Film_Slate.png');
+  background-repeat: no-repeat;
+  background-size: contain; 
+  background-position: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 459px; 
+  width: 390px;
+  }
+  
+  .InputsContainer {
+    margin-bottom: 40px;
+    margin-top: 276px;
+    margin-right: 17px;
+    margin-left: 20px;
+  }
+  
+  .Buttons {
+    margin-left: 118px;
+    display: flex;
+    justify-content: space-between; /* Spread the buttons horizontally */
+  }
+
+  .Buttons > *:not(:last-child) {
+    margin-right: 16px; /* Adjust the margin value to create space between the buttons */
+  }
+  

@@ -1,104 +1,59 @@
 import { useEffect, useState } from "react";
-import { useUsers } from '../../providers/users';
-import { useRouter } from 'next/router';
-
-
+import { useUsers } from "../../providers/users";
+import { Form, Input, Button } from "antd";
+import { IUser } from "../../providers/users/context";
+import styles from './Login.module.css';
 
 const LoginSignPage: React.FC = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [username, setUserName] = useState('');
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const router = useRouter();
-    
-    const {createUser} = useUsers();
+  const [showLogin, setShowLogin] = useState(false);
+  const { createUser } = useUsers();
 
-
-    // useEffect(() => {
-    //     createUser(); 
-    //   }, []);
-    
-  
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      
-      router.push('/MovieHome');
-    };
-    const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-    
-    };
-  
-    return (
-      <><div>
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Email:
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required />
-          </label>
-          <label>
-            Password:
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required />
-          </label>
-          <button type="submit">Login</button>
-        </form>
-      </div><div>
-          <h2>Sign Up</h2>
-          <form onSubmit={handleSignUp}>
-            <label>
-              Email:
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required />
-            </label>
-            <label>
-              UserName:
-              <input
-                type="username"
-                value={username}
-                onChange={(e) => setUserName(e.target.value)}
-                required />
-            </label>
-            <label>
-              Name:
-              <input
-                type="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required />
-            </label>
-            <label>
-              Surname:
-              <input
-                type="surname"
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-                required />
-            </label>
-            <label>
-              Password:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required />
-            </label>
-            <button type="submit">Sign Up</button>
-          </form>
-        </div></>
-      
-    );
+  const onFinish = async (values: IUser) => {
+    console.log("Received values:", values);
+    if (createUser) {
+      createUser(values);
+    } else {
+      console.log("Failed to create person");
+      alert("Failed to create person");
+    }
   };
 
+  return (
+    <Form onFinish={onFinish} className={styles.loginBox}>
+      <div className={styles.Inputs}>
+
+      <Form.Item label="EmailAddress" name="EmailAddress" rules={[{ required: true, message: "Please enter your email" }]}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Password" name="Password" rules={[{ required: true, message: "Please enter your password" }]}>
+        <Input.Password />
+      </Form.Item>
+      <Form.Item label="UserName" name="UserName" rules={[{ required: true, message: "Please enter your username" }]}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="SurName" name="SurName" rules={[{ required: true, message: "Please enter your surname" }]}>
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Phone Number"
+        name="PhoneNumber"
+        rules={[{ required: true, message: "Please enter your phone number" }]}
+        >
+        <Input />
+      </Form.Item>
+      <Form.Item label="Name" name="Name" rules={[{ required: true, message: "Please enter your name" }]}>
+        <Input />
+      </Form.Item>
+        </div>
+      <Form.Item>
+        <div className={styles.button}>
+        <Button type="primary" htmlType="submit">
+          Sign Up
+        </Button>
+        </div>
+      </Form.Item>
+    </Form>
+  );
+};
+
+export default LoginSignPage;

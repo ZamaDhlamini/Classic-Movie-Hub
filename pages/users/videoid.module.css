@@ -17,10 +17,16 @@
   .description {
     margin-top: 20px;
     font-family: 'Morden', sans-serif;
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
   
   .details {
     margin-top: 20px;
+    margin-bottom: auto;
     font-family: 'Morden', sans-serif;
   }
   
@@ -32,11 +38,12 @@
     text-align: left;
   }
 
-  .description {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
+  .description p{
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    text-align: left;
+    
     
   }
   
@@ -50,5 +57,79 @@
     margin-right: 20px;
     padding-top: 20px;
   }
+
+  .content{
+    width: calc(80% - 280px);
+    margin-left: 10px;
+    float: left;
+    position: relative;
+  }
+
+  .moreContent{
+    display: block;
+    margin-bottom: 20px;
+    width: 400px;
+    height: 300px;
+  }
+
+  .filmBox{
+    box-sizing: border-box;
+    display: block;
+    float: right;
+    padding-right: 100px;
+    display: block;
+  }
+
+  /* .moreImages{
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .poster1, .poster2, .poster3{
+    width: 100%;
+    padding-bottom: 148%;
+    overflow: hidden;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 10px;
+  } */
+
+  .moreImages {
+    display: flex;
+  }
+  
+  .poster1,
+  .poster2,
+  .poster3 {
+    flex: 1;
+    padding-bottom: 148%;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .poster1 img,
+  .poster2 img,
+  .poster3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .moreHeading {
+    text-align: center;
+  }
+
+  
+  .poster1:not(:last-child),
+.poster2:not(:last-child),
+.poster3:not(:last-child) {
+  margin-right: 40px;
+}
+
+
+
+
   
   

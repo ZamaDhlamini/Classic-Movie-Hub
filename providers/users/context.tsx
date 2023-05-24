@@ -20,6 +20,7 @@ export interface ILogin{
 export interface IUsersStateContext{
     readonly UserCreated?: IUser;
     readonly Login?: ILogin;
+    readonly errorMessage?: string;
 }
 
 export const  INITIAL_STATE: IUsersStateContext = {}

@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'Morden';
+    src: url('../public/fonts/Morden.woff') format('woff');
+}
+
+main {
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navMain {
+    display: flex;
+  }
+  
+  .logo {
+    margin-right: auto; /* Pushes the logo to the far left */
+  }
+  
+  .links {
+    margin-left: auto; /* Pushes the links to the far right */
+  }
+  
+  /* Optional styling for the links */
+  .links a {
+    margin-left: 10px; /* Adds some spacing between the links */
+  }
+  
+
+body {
+    height: 125vh;
+    background-size: cover;
+    font-family: sans-serif;
+    margin-top: 80px;
+    padding: 30px;
+}
+
+header {
+    background-color: rgb(105, 103, 103);
+    background-image: url('../public/navbar\ film\ background.jpg');
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+header * {
+    display: inline;
+}
+
+header link {
+    margin: 20px;
+}
+
+header link {
+    color: white;
+    text-decoration: none;
+}
