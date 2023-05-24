@@ -1,44 +1,33 @@
-import React from 'react';
-import { fetchVideo } from '../../utils/api';
-import ReactPlayer from 'react-player';
-import styles from './video.module.css';
+// import React, { useContext, useEffect } from "react";
+// import { useRouter } from "next/router";
+// import { useMovie } from "../../providers/movies";
 
-const VideoPage: React.FC = () => {
-  const [videoData, setVideoData] = React.useState<any>(null);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const videoId = 3944332; // Replace with the desired video ID
+// const VideoPage: React.FC = () => {
+//   const router = useRouter();
+//   const { id } = router.query;
 
-  React.useEffect(() => {
-    const fetchVideoData = async () => {
-      try {
-        const data = await fetchVideo(videoId);
-        setVideoData(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching video:', error);
-        setLoading(false);
-      }
-    };
+//   const { MovieGotten } = useMovie();
 
-    fetchVideoData();
-  }, [videoId]);
+//   const foundMovie = MovieGotten?.find((movie) => movie.id.toString() === id);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
-  if (!videoData) {
-    return <div>Video not found</div>;
-  }
+//   return (
+//     <div>
 
-  return (
-    <div className={styles.videoContainer}>
-      <h1 className={styles.title}>{videoData.title}</h1>
-      <div className={styles.videoPlayer}>
-        <ReactPlayer url={videoData.video_files[0].link} controls={true} width="100%" height="100%" />
-      </div>
-    </div>
-  );
-};
+//       <h1>this is where your movies should go</h1>
+//       {foundMovie ? (
+//         <div>
+//           <h2>{foundMovie.title}</h2>
+//           <p>{foundMovie.description}</p>
+//           <p>{foundMovie.starring}</p>
+//           <p>{foundMovie.year}</p>
+//           <p>{foundMovie.duration}</p>
+//         </div>
+//       ) : (
+//         <p>Loading or Movie Not Found</p>
+//       )}
+//     </div>
+//   );
+// };
 
-export default VideoPage;
+// export default VideoPage;

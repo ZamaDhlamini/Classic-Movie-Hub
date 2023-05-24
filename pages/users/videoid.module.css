@@ -1,0 +1,30 @@
+@font-face {
+    font-family: Morden;
+    src: url('../../public/fonts/Morden.woff') format('woff');
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .video-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    margin-top: 20px;
+    font-family: 'Morden', sans-serif;
+  }
+  
+  .details {
+    margin-top: 20px;
+    font-family: 'Morden', sans-serif;
+  }
+  
+  .details p {
+    margin: 5px 0;
+  }
+  

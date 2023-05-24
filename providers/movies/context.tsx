@@ -9,6 +9,7 @@ export interface IMovie {
     picture?: string,
     videoUrl?: string,
     description?: string,
+    movies?:string,
     year?: string,
 
     // film?: string,

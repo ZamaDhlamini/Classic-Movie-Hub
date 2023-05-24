@@ -1,13 +1,14 @@
-import axios from 'axios';
+// import React from 'react';
+// import Link from 'next/link';
+// import styles from './YourComponent.module.css';
 
-const API_KEY = 'u7fj2wGyZSRHoYjE3KsG4EYO2UukXfCb4H4as0fgUhOMeZxLCyNWhNTE';
+// const FetchVideo: React.FC<{ movies: string }> = ({ movies }) => {
+//   return (
+//     <Link href={`/video?movies=${encodeURIComponent(movies)}`}>
+//       <div className={styles.imageContainer}>
+//       </div>
+//     </Link>
+//   );
+// };
 
-export async function fetchVideo(videoId: number) {
-  const response = await axios.get(`https://api.pexels.com/videos/videos/${videoId}`, {
-    headers: {
-      Authorization: API_KEY,
-    },
-  });
-
-  return response.data;
-}
+// export default FetchVideo;

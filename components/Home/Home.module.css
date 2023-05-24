@@ -1,3 +1,9 @@
+@font-face {
+    font-family: Morden;
+    src: url('../../public/fonts/Morden.woff') format('woff');
+}
+
+
 .heading h1{
     font-size: 40px;
   font-weight: 600;
@@ -5,6 +11,7 @@
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+  font-family: 'Morden', sans-serif;
 }
 
 .grid {
@@ -51,6 +58,11 @@
     text-align: center;
     color: #fff;
   }
+
+  .overlayContent p {
+    font-size: 14px;
+    color: #888;
+  }
   
   .imageContainer:hover .overlay {
     opacity: 1;
@@ -63,6 +75,19 @@
   .overlay {
     /* Your existing overlay styles */
     opacity: 0;
+  }
+
+  .trailerBUtton:hover {
+    background-color: #0056b3;
+  }
+
+  .trailerBUtton {
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
   }
   
   

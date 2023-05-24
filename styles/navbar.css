@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Morden';
+    src: url('../public/fonts/Morden.woff') format('woff');
+}
+
 main {
     color: white;
 }
@@ -36,11 +41,12 @@ body {
 
 header {
     background-color: rgb(105, 103, 103);
+    background-image: url('../public/navbar\ film\ background.jpg');
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 80px;
     display: flex;
     align-items: center;
 }

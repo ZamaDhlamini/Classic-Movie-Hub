@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import styles from './layout.module.css';
 
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 }
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
+  <div className={styles.container}>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -17,7 +18,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     </Head>
     <header>
   <nav>
-    <div className="navMain">
+    <div className={styles.navMain}>
       <div className="logo">ZMovies</div>
       <div className="links">
         <Link href="/">Movies</Link> | <Link href="/about">Your Movies</Link> |{' '}

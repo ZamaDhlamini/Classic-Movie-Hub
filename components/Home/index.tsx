@@ -5,24 +5,18 @@ import Layout from '../Layout';
 import { useGet } from 'restful-react';
 import { useMovie } from '../../providers/movies';
 import styles from './Home.module.css';
+import router from 'next/router';
 
 const IndexPage = () => {
   const { getMovies, MovieGotten } = useMovie();
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [videoUrl, setVideoUrl] = useState('');
 
-  useEffect(() => {
-    getMovies();
-    console.log('movie is fetched');
-  }, []);
-
-  const extractYouTubeVideoId = (url) => {
-    if (url) {
-      const trailerId = url.replace('https://youtu.be/', '');
-      return trailerId;
-    }
-    return null;
-  };
+  // useEffect(() => {
+  getMovies();
+  //   console.log('movie is fetched');
+  // }, []);
 
   const handleMouseEnter = (movieId) => {
     setHoveredMovieId(movieId);
@@ -31,10 +25,23 @@ const IndexPage = () => {
   const handleMouseLeave = () => {
     setHoveredMovieId(null);
   };
-
-  const handleClick = () => {
-    setShowTrailer(true);
+  
+  const handleMovieClick = (movieId) => {
+    router.push(`/users/${movieId}`);
   };
+  
+
+  const handleClick = (movies) => {
+    const videoId = extractVideoId(movies);
+    setShowTrailer(videoId);
+  };
+
+  const extractVideoId = (url) => {
+    const match = url.match(/(?:https?:\/\/(?:www\.)?youtube\.com\/watch\?v=|https?:\/\/youtu.be\/|https?:\/\/(?:www\.)?youtube\.com\/embed\/)([\w-]{11})(?:.*)/);
+    return match ? match[1] : null;
+  };
+  
+  
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">
@@ -49,13 +56,13 @@ const IndexPage = () => {
             onMouseEnter={() => handleMouseEnter(movie.id)}
             onMouseLeave={handleMouseLeave}
           >
-            <Link href="/video">
+           <Link href={`/users/${movie.id}`}>
               <div className={styles.imageContainer}>
                 <img src={movie.picture} alt={movie.title} width={'300px'} height={'420px'} />
                 <div className={styles.overlay}>
                   <div className={styles.overlayContent}>
                     <p>Duration: {hoveredMovieId === movie.id ? movie.duration : ''}</p>
-                    <p>Starring: {hoveredMovieId === movie.id ? movie.starring : ''}</p>
+                    <p>Starring: {hoveredMovieId === movie.id ? movie.starring: ''}</p>
                     <p>Genre: {hoveredMovieId === movie.id ? movie.genreName : ''}</p>
                     <p>Year: {hoveredMovieId === movie.id ? movie.year : ''}</p>
                   </div>
@@ -63,16 +70,17 @@ const IndexPage = () => {
               </div>
             </Link>
             <h1 className={styles.movieTitle}>{movie.title}</h1>
-            <button onClick={handleClick} className='trailer button'>View Trailer</button>
             {showTrailer && (
-              <ReactPlayer
-                className={styles.video}
-                url={`https://www.youtube.com/watch?v=${extractYouTubeVideoId(movie.videoUrl)}`}
-                width="100%"
-                height="100%"
-                controls
-              />
-            )}
+            <iframe
+              src={`https://www.youtube.com/embed/${showTrailer}`}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allowFullScreen
+                 />
+                 )}
+              <button onClick={() => handleClick(movie.movies)} className={styles.trailerBUtton}>View Trailer</button>
+              {/* <button onClick={() => handleMovieClick(movie.movies)} className={styles.movieBUtton}>view movie</button> */}
           </div>
         ))}
       </div>

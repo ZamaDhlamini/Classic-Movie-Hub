@@ -2,6 +2,7 @@ import React from "react";
 import { RestfulProvider } from "restful-react";
 import App, { AppProps } from 'next/app';
 import '../styles/navbar.css';
+import '../styles/moviegallery.css';
 import { MovieProvider } from "../providers/movies";
 import { getDecod } from "../utils/auth";
 

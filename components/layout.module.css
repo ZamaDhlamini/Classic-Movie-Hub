@@ -1,0 +1,17 @@
+@font-face {
+    font-family: Morden;
+    src: url('../public/fonts/Morden.woff') format('woff');
+}
+
+.navMain{
+    font-size: 35px;
+    font-family: 'Morden', sans-serif;
+    color: azure;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+}
+
+
+
