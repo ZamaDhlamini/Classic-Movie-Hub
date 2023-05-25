@@ -21,7 +21,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <div className={styles.navMain}>
       <div className={styles.logo}>ZMovies</div>
       <div className={styles.links}>
-        <Link href="/">Movies</Link> | <Link href="/users">Your Movies</Link> |{' '}
+        <Link href="/">Movies</Link> | <Link href="/movieList">Your Movies</Link> |{' '}
         {/* <Link href="/users"></Link> |{' '} */}
         <a href="/faq">FAQ</a>
       </div>

@@ -3,81 +3,86 @@ import { ILogin, INITIAL_STATE, IUser, USersStateContext, UserContext, UsersActi
 import { UserReducer } from "./reducer";
 import { CreateUserErrorAction, CreateUserRequestAction, CreateUserSuccessAction, LoginUserRequestAction } from "./actions";
 import { useContext } from "react";
-import { useMutate } from "restful-react";
 import { stat } from "fs";
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { useMutate } from 'restful-react';
+import error from "next/error";
+
 
 const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
   const [state, dispatch] = useReducer(UserReducer, INITIAL_STATE);
 
-//   const {mutate: createUserHttp} = useMutate({
-//     path: "/Person/Create",
-//     verb: "POST",
+  const createUserMutation = useMutate({
+    verb: 'POST',
+    path: 'Person/Create',
+  });
+
+//   const loginMutation = useMutate({
+//     verb: 'POST',
+//     path: 'https://localhost:44311/api/TokenAuth/Authenticate',
 //   });
+  
+  
+  const createUser = async (payload) => {
+    try {
+      const response = await createUserMutation.mutate(payload);
+  
+      if (createUserMutation.error) {
+        // Handle error case
+        console.error('Error occurred during sign up', createUserMutation.error);
+      } else {
+        // Handle success case
+        if (response?.data?.request) {
+          dispatch(CreateUserRequestAction(response.data.request));
+        }
+  
+        console.log(response.status);
+        window.location.href = '/';
+      }
+    } catch (error) {
+      // Handle error case
+      console.error('Error occurred during sign up', error);
+    }
+  };
+  
+  
+  
 
-//   useEffect(() =>{
-//     if(state.UserCreated){
-//         dispatch(CreateUserRequestAction(state.UserCreated))
-//     }
-//   },[state.UserCreated])
-
-//   const signUpUser = (payload: IUser) =>{
-//      dispatch(CreateUserRequestAction(payload));
-//      createUserHttp(payload)
-//      .then((response) => {
-//         createUserHttp({
-
-//         }).then(() => {
-//             dispatch(CreateUserSuccessAction(payload));
-//         })
-       
-//       })
-//       .catch(({message: errorMessage}) => {
-//          dispatch(CreateUserErrorAction(errorMessage));
-//          //error message here with antd
-//       });
-//   };
-
-  const createUser = async (payload:IUser) => {
-    await fetch('https://localhost:44311/api/services/app/Person/Create', {
+  const login = async (payload: ILogin) => {
+    try {
+      const response = await fetch('https://localhost:44311/api/TokenAuth/Authenticate', {
         method: 'POST',
         cache: 'no-cache',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
-    }).then(res => {
-        res.json().then(data => {
-            dispatch(CreateUserRequestAction(data.request))
-            if(res.status === 200){
-                console.log(res.status)
-                window.location.href='/'
-            }  
-        })
-    })
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        localStorage.setItem('token', data.result.accessToken);
+        dispatch(LoginUserRequestAction(data.request));
+  
+        // Decode the token
+        const decodedToken = jwt.decode(data.result.accessToken) as JwtPayload;
+        console.log('Decoded Token:', decodedToken);
+  
+        window.location.href = '/';
+      } else {
+        // Handle non-200 response status
+        console.error('Login request failed with status:', response.status);
+      }
+    } catch (error) {
+      // Handle network or parsing errors
+      console.error('Error occurred during login:', error);
     }
-
-    const login = async (payload: ILogin) => {
-        await fetch ('https://localhost:44311/api/TokenAuth/Authenticate', {
-
-        method: 'POST',
-        cache: "no-cache",
-        headers:{
-            'content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-        }).then(res => {
-            res.json().then(data =>{
-                console.log(data);
-                localStorage.setItem('token', data.result.accessToken);
-                dispatch(LoginUserRequestAction(data.request))
-                if(res.status === 200){
-                    console.log(res.status)
-                    window.location.href='/'
-                }
-            })
-        })
-         
-    }
+  };            
+  
+  
+      
+      
 
     return(
         <UserContext.Provider value={state}>

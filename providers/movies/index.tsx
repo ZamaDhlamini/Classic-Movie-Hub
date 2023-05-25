@@ -1,7 +1,7 @@
 import React, { FC, PropsWithChildren, useContext, useEffect, useReducer, useState } from 'react';
 import { MovieReducer } from './reducer';
 import {IMovie,INITIAL_STATE,MovieActionContext,MovieStateContext,} from './context';
-import {GetMovieRequestAction} from './actions';
+import {GetMovieRequestAction, SearchMovieRequestAction} from './actions';
 import { useGet } from 'restful-react';
 
 const MovieProvider = ({ children }) => {
@@ -22,11 +22,27 @@ const MovieProvider = ({ children }) => {
             getMoviesHttp();
     }
 
+    const searchMovie = (input:string) => {
+        if (input.trim() !== '') {
+        const searchMovies = async () => {
+            const searchData = await getMoviesHttp({
+            path: `Movie/Search?title=${input}`,
+            });
+            dispatch(SearchMovieRequestAction(searchData.result));
+        };
+        searchMovies();
+        } else {
+        getMoviesHttp();
+        }
+}
+
+
     return (
         <MovieStateContext.Provider value={state}>
             <MovieActionContext.Provider
                 value={{
-                    getMovies
+                    getMovies,
+                    searchMovie
                 }}
             >
                 {children}

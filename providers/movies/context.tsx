@@ -28,8 +28,8 @@ export interface IMovieStateContext {
 
 export interface IMovieActionContext{
     getMovies?:() => void;
-    // searchMovie?:(payload:string) => void;
-    // filterMovie?:(payload:string) => void;
+    searchMovie?:(payload:string) => void;
+    filterMovie?:(payload:string) => void;
     // countMovies?:() => void;
 }
 
