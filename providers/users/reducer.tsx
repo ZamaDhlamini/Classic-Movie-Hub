@@ -12,6 +12,9 @@ export function UserReducer(incomingState: IUsersStateContext, action: ReduxActi
                 return{...incomingState}
             default:
                 return incomingState;
-    }
+                case UsersActionEnums.LogoutUser:
+                    return{...incomingState}
+    }           
+               
 
 }

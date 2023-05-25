@@ -11,6 +11,7 @@ const MovieProvider = ({ children }) => {
         path: 'Movie/GetAll' ,
         lazy: true,
     });
+
     
     useEffect(()=>{
         if(data){
@@ -22,19 +23,23 @@ const MovieProvider = ({ children }) => {
             getMoviesHttp();
     }
 
-    const searchMovie = (input:string) => {
+    const searchMovie = (input: string) => {
         if (input.trim() !== '') {
-        const searchMovies = async () => {
+          const searchMovies = async () => {
             const searchData = await getMoviesHttp({
-            path: `Movie/Search?title=${input}`,
+              path: `Movie/Search?title=${input}`,
             });
-            dispatch(SearchMovieRequestAction(searchData.result));
-        };
-        searchMovies();
+            if (searchData && searchData.result) {
+              dispatch(SearchMovieRequestAction(searchData.result));
+            }
+          };
+          searchMovies();
         } else {
-        getMoviesHttp();
+          // Handle the case when input is empty
+          // You might want to add some code here
         }
-}
+      };
+      
 
 
     return (

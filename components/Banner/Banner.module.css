@@ -2,6 +2,9 @@
   padding: 200px;
   text-align: center;
   background-image: url('../../public/old_movie_poster_banner\ \(1\).jpg');
+  background-repeat: no-repeat;
+  margin-left: 88px;
+  margin-top: 73px;
   color: white;
   font-size: 30px;
   position: relative;

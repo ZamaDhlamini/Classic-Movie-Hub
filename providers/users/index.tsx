@@ -1,12 +1,15 @@
 import { FC, PropsWithChildren, useEffect, useReducer } from "react";
 import { ILogin, INITIAL_STATE, IUser, USersStateContext, UserContext, UsersActionsContext } from "./context";
 import { UserReducer } from "./reducer";
-import { CreateUserErrorAction, CreateUserRequestAction, CreateUserSuccessAction, LoginUserRequestAction } from "./actions";
+import { CreateUserErrorAction, CreateUserRequestAction, CreateUserSuccessAction, LoginUserRequestAction, LogoutUserAction } from "./actions";
 import { useContext } from "react";
 import { stat } from "fs";
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { useMutate } from 'restful-react';
 import error from "next/error";
+import decodeToken from "../../utils/auth";
+import { saveToken } from "../../utils/auth";
+import { message } from "antd";
 
 
 const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
@@ -17,6 +20,7 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
     path: 'Person/Create',
   });
 
+  
 //   const loginMutation = useMutate({
 //     verb: 'POST',
 //     path: 'https://localhost:44311/api/TokenAuth/Authenticate',
@@ -58,32 +62,31 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
         },
         body: JSON.stringify(payload),
       });
-  
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        localStorage.setItem('token', data.result.accessToken);
+        saveToken(data.result.accessToken);
         dispatch(LoginUserRequestAction(data.request));
   
-        // Decode the token
-        const decodedToken = jwt.decode(data.result.accessToken) as JwtPayload;
+        // Decode the token using the decodeToken function from auth.ts
+        const decodedToken = decodeToken(data.result.accessToken);
         console.log('Decoded Token:', decodedToken);
   
         window.location.href = '/';
       } else {
-        // Handle non-200 response status
-        console.error('Login request failed with status:', response.status);
+        // ...
       }
     } catch (error) {
-      // Handle network or parsing errors
-      console.error('Error occurred during login:', error);
+      // ...
     }
-  };            
+  };    
+  
+  // const logOutUSer = () => {
+  //   dispatch(LogoutUserAction());
+  //   window.location.href = '/signIn';
+  // };
   
   
-      
-      
-
     return(
         <UserContext.Provider value={state}>
             <UsersActionsContext.Provider value={{createUser, login}}>

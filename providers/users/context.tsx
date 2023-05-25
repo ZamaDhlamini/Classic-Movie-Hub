@@ -21,12 +21,14 @@ export interface IUsersStateContext{
     readonly UserCreated?: IUser;
     readonly Login?: ILogin;
     readonly errorMessage?: string;
+    readonly logout?: boolean;
 }
 
 export const  INITIAL_STATE: IUsersStateContext = {}
 export interface IUsersActionContext{
     createUser?:(payload:IUser) => void;
     login?:(payload: ILogin) => void;
+    logout?: () => void;
 
 }
 

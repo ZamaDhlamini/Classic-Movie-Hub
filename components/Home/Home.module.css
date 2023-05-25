@@ -85,8 +85,22 @@
     width: 20px;
     height: 20px;
   }
+  .starLogo{
+    width: 30px;
+    height: 30px;
+  }
 
   .logoButton {
+    font-size: 10px;
+    color: #fff;
+    background-color: #f7efdc;
+    border: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 50px;
+  }
+  
+  .starButton {
     font-size: 10px;
     color: #fff;
     background-color: #f7efdc;

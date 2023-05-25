@@ -14,4 +14,4 @@ export const LoginUserRequestAction = createAction<IUsersStateContext, ILogin>(U
 export const CreateUserRequestAction = createAction<IUsersStateContext, IUser>(UsersActionEnums.CreateUserRequest, (UserCreated) => ({UserCreated}));
 export const CreateUserSuccessAction = createAction<IUsersStateContext, IUser>(UsersActionEnums.CreateUserRequest, (UserCreated) => ({UserCreated}));
 export const CreateUserErrorAction = createAction<IUsersStateContext, string>(UsersActionEnums.CreateUserError, (errorMessage) => ({errorMessage}));
-export const LogoutUser = createAction<IUsersStateContext>(UsersActionEnums.LogoutUser, () => ({}));
+export const LogoutUserAction = createAction<IUsersStateContext>(UsersActionEnums.LogoutUser);

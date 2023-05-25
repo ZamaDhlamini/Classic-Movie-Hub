@@ -22,7 +22,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <div className={styles.logo}>ZMovies</div>
       <div className={styles.links}>
         <Link href="/">Movies</Link> | <Link href="/movieList">Your Movies</Link> |{' '}
-        {/* <Link href="/users"></Link> |{' '} */}
+        <Link href="/SignIn">Log Out</Link> |{' '}
         <a href="/faq">FAQ</a>
       </div>
     </div>

@@ -36,7 +36,7 @@
 }
 
 .navMain {
-    color: white;
+    color: rgb(252, 132, 84);
 }
 
 .header {
@@ -54,12 +54,13 @@
   }
   
   .links {
-    margin-left: auto; 
+    margin-left: 790px; 
   }
   
   /* Optional styling for the links */
   .links a {
     margin-left: 10px; /* Adds some spacing between the links */
+    color: aliceblue
   }
   
 

@@ -1,8 +1,16 @@
-import jwt_decode from 'jwt-decode';
-const getDecod=()=>{
-    let decoded=jwt_decode("eeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJhZG1pbkBhc3BuZXRib2lsZXJwbGF0ZS5jb20iLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjZjOGQ4ZjY3LTI5N2ItZTRiMC02N2NkLTNhMGI0MDQ1ZmRmOSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwic3ViIjoiMSIsImp0aSI6IjRjZjIxNTE4LWUxOGYtNGFmOS1iMmEzLTY1OWQ0NzVkODQzNyIsImlhdCI6MTY4NDgzMjE3MywibmJmIjoxNjg0ODMyMTczLCJleHAiOjE2ODQ5MTg1NzMsImlzcyI6Ik1vdmllUHJvamVjdCIsImF1ZCI6Ik1vdmllUHJvamVjdCJ9.DHoBXUDPHNsTXmTanobzvjrdN3I0U9jGcINq9xzhkWQ");
+import jwtDecode, { JwtPayload } from 'jwt-decode';
+import jwt from 'jsonwebtoken';
 
-    return decoded;
-}
 
-export {getDecod}
+
+export const decodeToken = (token: string): JwtPayload => {
+    return jwtDecode(token) as JwtPayload;
+  };
+
+  export const saveToken = (token: string) => {
+    localStorage.setItem('token', token);
+  };
+  
+  
+
+export default decodeToken;
