@@ -5,7 +5,7 @@ import { CreateUserErrorAction, CreateUserRequestAction, CreateUserSuccessAction
 import { useContext } from "react";
 import { stat } from "fs";
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { useMutate } from 'restful-react';
+import { useGet, useMutate } from 'restful-react';
 import error from "next/error";
 import decodeToken from "../../utils/auth";
 import { saveToken } from "../../utils/auth";
@@ -19,6 +19,8 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
     verb: 'POST',
     path: 'Person/Create',
   });
+
+  
 
   
 //   const loginMutation = useMutate({
@@ -118,6 +120,6 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
         }
     };
 
-export {UsersProvider, useUsers }; //!!don't forget to add useUsers!!
+export {UsersProvider, useUsers}; //!!don't forget to add useUsers!!
 
 

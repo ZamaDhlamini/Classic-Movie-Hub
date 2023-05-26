@@ -19,7 +19,7 @@ export interface ILogin{
 
 export interface IUsersStateContext{
     readonly UserCreated?: IUser;
-    readonly Login?: ILogin;
+    readonly Login?: Array<ILogin>;
     readonly errorMessage?: string;
     readonly logout?: boolean;
 }
