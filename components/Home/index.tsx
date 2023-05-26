@@ -6,6 +6,8 @@ import { useGet, useMutate } from 'restful-react';
 import { useMovie } from '../../providers/movies';
 import styles from './Home.module.css';
 import router from 'next/router';
+import { useUsers } from '../../providers/users';
+import { message } from 'antd';
 
 const IndexPage = () => {
   const { getMovies, MovieGotten, searchMovies } = useMovie();
@@ -13,11 +15,10 @@ const IndexPage = () => {
   const [showTrailer, setShowTrailer] = useState(false);
   const [videoUrl, setVideoUrl] = useState('');
   const [searchInput, setSearchInput] = useState('');
+  const { login, Login } = useUsers();
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
-  const { mutate: addToFavoriteList } = useMutate({
-    verb: 'POST',
-    path: 'https://localhost:44311/api/services/app/MovieListAbpApp/CreateList',
-  });
+
 
   useEffect(() => {
     getMovies();
@@ -35,16 +36,6 @@ const IndexPage = () => {
     router.push(`/users/${movieId}`);
   };
 
-  const AddToFavoriteList = (movieId) => {
-    addToFavoriteList({ movieId })
-      .then(() => {
-        console.log('Movie added to favorite list successfully');
-      })
-      .catch((error) => {
-        console.error('Failed to add movie to favorite list', error);
-      });
-  };
-  
 
   const handleClick = (movies) => {
     const videoId = extractVideoId(movies);
@@ -59,6 +50,24 @@ const IndexPage = () => {
   const handleSearch = () => {
     searchMovies(searchInput);
   };
+
+  const addToFavorites = (movieId) => {
+    // Find the movie with the matching ID
+    const movieToAdd = MovieGotten.find((movie) => movie.id === movieId);
+  
+    // Check if the movie is already in the favorites list
+    const isAlreadyAdded = favoriteMovies.some((movie) => movie.id === movieId);
+  
+    if (!isAlreadyAdded && movieToAdd) {
+      setFavoriteMovies([...favoriteMovies, movieToAdd]);
+      message.success(`Movie "${movieToAdd.title}" has been added to favorites.`);
+    } else {
+      message.warning(`Movie "${movieToAdd.title}" is already in favorites.`);
+    }
+  };
+  
+  
+  
   
   
 
@@ -66,13 +75,16 @@ const IndexPage = () => {
     <Layout title="Home | Next.js + TypeScript Example">
       <div className={styles.heading}>
         <h1>Popular Movies</h1>
+        <p>
+        <Link href="/movieList">Go to Favorites</Link>
+      </p>
       </div>
       <div>
           <input type="text" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
           <button onClick={handleSearch}>Search</button>
         </div>
       <div className={styles.grid}>
-        {MovieGotten?.map((movie) => (
+        {MovieGotten.map((movie) => (
           <div
             key={movie.id}
             className={`${styles.movie} ${hoveredMovieId === movie.id ? styles.hovered : ''}`}
@@ -95,9 +107,12 @@ const IndexPage = () => {
             <button onClick={() => handleClick(movie.movies)} className={styles.logoButton}>
               <img src="logo.png" alt="Logo" className={styles.logo} />
             </button>
-            <button onClick={() => AddToFavoriteList(movie.id)} className={styles.starButton}>
-              <img src="starlogo.png.png" alt="star logo" className={styles.starLogo}/>
-            </button>
+            <button
+  className={styles.starButton}
+  onClick={() => addToFavorites(movie.id)}
+>
+  <img src="starlogo.png.png" alt="star logo" className={styles.starLogo} />
+</button>
             <h1 className={styles.movieTitle}>{movie.title}</h1>
             {showTrailer && (
             <iframe

@@ -3,9 +3,15 @@ import { Form, Input, Button } from "antd";
 import { ILogin } from "../../providers/users/context";
 import styles from './SignIn.module.css';
 import Link from "next/link";
+import router from "next/router";
+import Login from "../../pages/Login";
 
 const SignIn: React.FC = () => {
-  const { login } = useUsers();
+  // const {id} = router.query;
+  const { login, Login } = useUsers();
+  // console.log("MyID::", id);
+
+  // const foundUser = Login.find((user) => user.id === id);
 
   const onFinish = async (values: ILogin) => {
     console.log("Received values:", values);
@@ -20,6 +26,7 @@ const SignIn: React.FC = () => {
   return (
         <><div className={styles.signInHeading}>
           <h1>Log In</h1>
+          {}
       </div><Form onFinish={onFinish} className={styles.signInBox}>
               <div className={styles.InputsContainer}>
                   <Form.Item name="userNameOrEmailAddress" rules={[{ required: true, message: "Please enter your email address or username" }]}>

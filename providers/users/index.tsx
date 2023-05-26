@@ -20,9 +20,25 @@ const UsersProvider: FC<PropsWithChildren<any>> = ({children}) => {
     path: 'Person/Create',
   });
 
-  
+  const { refetch: getPersonById, error: personByIdError, loading: isLoadingPerson, data: person } = useGet({
+    path: 'https://localhost:44311/api/services/app/Person/GetByUserId',
+  })
 
-  
+  useEffect(() => {
+    if(!isLoadingPerson && person?.id){
+      console.log('person::', person)
+      localStorage.setItem('userDetails', JSON.stringify(person.result))
+    }else if(personByIdError){
+      console.log('Error person::', personByIdError)
+    }
+  }, [getPersonById, personByIdError, isLoadingPerson]);
+  // const getUserDetails = (id: number) => {
+  //   getPersonById({ queryParams: { userId: id } }).then((data) => {
+  //       localStorage.setItem('userDetails', JSON.stringify(data.result))
+  //       console.log('userD::', data)
+  //   })
+  // }
+
 //   const loginMutation = useMutate({
 //     verb: 'POST',
 //     path: 'https://localhost:44311/api/TokenAuth/Authenticate',
