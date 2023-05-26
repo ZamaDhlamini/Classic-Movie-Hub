@@ -8,7 +8,7 @@ import styles from './Home.module.css';
 import router from 'next/router';
 
 const IndexPage = () => {
-  const { getMovies, MovieGotten, searchMovie } = useMovie();
+  const { getMovies, MovieGotten, searchMovies } = useMovie();
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
   const [videoUrl, setVideoUrl] = useState('');
@@ -57,7 +57,7 @@ const IndexPage = () => {
   };
 
   const handleSearch = () => {
-    searchMovie(searchInput);
+    searchMovies(searchInput);
   };
   
   

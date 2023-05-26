@@ -2,7 +2,7 @@ import React, { FC, PropsWithChildren, useContext, useEffect, useReducer, useSta
 import { MovieReducer } from './reducer';
 import {IMovie,INITIAL_STATE,MovieActionContext,MovieStateContext,} from './context';
 import {GetMovieRequestAction, SearchMovieRequestAction} from './actions';
-import { useGet } from 'restful-react';
+import { useGet, useMutate } from 'restful-react';
 
 const MovieProvider = ({ children }) => {
     const [state, dispatch] = useReducer(MovieReducer, INITIAL_STATE);
@@ -11,6 +11,10 @@ const MovieProvider = ({ children }) => {
         path: 'Movie/GetAll' ,
         lazy: true,
     });
+    const { data: searchResults, refetch: searchMoviesHttp } = useGet({
+        path: 'Movie/Search',
+        lazy: true,
+      });
 
     
     useEffect(()=>{
@@ -23,22 +27,15 @@ const MovieProvider = ({ children }) => {
             getMoviesHttp();
     }
 
-    const searchMovie = (input: string) => {
-        if (input.trim() !== '') {
-          const searchMovies = async () => {
-            const searchData = await getMoviesHttp({
-              path: `Movie/Search?title=${input}`,
-            });
-            if (searchData && searchData.result) {
-              dispatch(SearchMovieRequestAction(searchData.result));
-            }
-          };
-          searchMovies();
-        } else {
-          // Handle the case when input is empty
-          // You might want to add some code here
+    const searchMovies = async () => {
+        searchMoviesHttp();
+      }
+
+      useEffect(() => {
+        if (searchResults) {
+          dispatch(SearchMovieRequestAction(searchResults.result));
         }
-      };
+      }, [searchResults]);
       
 
 
@@ -47,7 +44,7 @@ const MovieProvider = ({ children }) => {
             <MovieActionContext.Provider
                 value={{
                     getMovies,
-                    searchMovie
+                    searchMovies
                 }}
             >
                 {children}

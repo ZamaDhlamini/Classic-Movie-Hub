@@ -33,7 +33,7 @@ const MovieList = () => {
     }
   };
 
-  const personId = login.id;
+  const personId = user?.personId;
 
 
   return (
