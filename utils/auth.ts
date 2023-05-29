@@ -8,4 +8,8 @@ export const decodeToken = (token: string): JwtPayload & { id: string } => {
 export const saveToken = (token: string) => {
   localStorage.setItem('token', token);
 };
+
+export const removeToken = () => {
+  localStorage.removeItem('token');
+};
 export default decodeToken;
