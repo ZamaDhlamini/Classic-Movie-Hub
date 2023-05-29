@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Profiles from "../../components/Profiles";
 import NewProfile from "../../components/NewProfile";
+import { useRouter } from "next/router";
+
 
 interface Profile {
   name: string;
@@ -8,10 +10,12 @@ interface Profile {
 }
 
 const ProfilePage: React.FC = () => {
+  const router = useRouter();
   const [profiles, setProfiles] = useState<Profile[]>([]);
 
   const handleAddProfile = (profile: Profile) => {
     setProfiles((prevProfiles) => [...prevProfiles, profile]);
+    router.push(`/users/${profile.name}`);
   };
 
   return (
