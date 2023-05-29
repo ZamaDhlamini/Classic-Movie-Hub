@@ -11,19 +11,19 @@ const NewProfile: React.FC<NewProfileProps> = ({ onAddProfile }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Validate form inputs here
+    
 
-    // Create a new profile object
+    
     const newProfile: ProfileProps = {
       name,
       picture,
-      // Add other profile details as needed
+      
     };
 
-    // Pass the new profile to the parent component
+    
     onAddProfile(newProfile);
 
-    // Clear form inputs
+   
     setName("");
     setPicture("");
   };
